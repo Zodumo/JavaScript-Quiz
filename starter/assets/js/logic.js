@@ -10,3 +10,15 @@
 // WHEN the game is over
 // THEN I can save my initials and score
 
+
+//Button to start quiz
+var startQuiz = document.querySelector("#start");
+
+//Button to submit answer 
+var submitAnswer = document.querySelector("#submit");
+
+//logic for  user's initials 
+var userInitals = document.querySelector("#initials");
+
+//logic for the final score
+var finalScore = document.querySelector("#final-score");
