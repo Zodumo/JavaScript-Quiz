@@ -59,3 +59,24 @@ function currentTime() {
 function setNewTime(newQuizTime) {
     time.textContent = newQuizTime;
 }
+
+
+//Function to countdown the quiz and end it at 0
+function countdown() {
+    var displayedTime = currentTime(); 
+    var stoppageValue = displayedTime- value;
+    // if the value of the timer is equal to or less than 0 , this indicates that the quiz is over
+    if (stoppageValue <= 0) {
+        clearInterval(interval);
+        setNewTime("Time is up! Your quiz is over");
+        gameOver();
+    } else {
+        // timer continues with new time if the condition of <=0 has not been met
+        setNewTime(stoppageValue);
+    } 
+}
+
+//In the countdown, the timer should decrease by 1
+function TimeMinusOne(){
+    countdown(1);
+}
