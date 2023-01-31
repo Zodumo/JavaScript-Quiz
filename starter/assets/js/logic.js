@@ -49,3 +49,13 @@ var questionNumber = -1;
 
 //score for the player is set at 0. 
 var score = 0;
+
+//function to get the current time on the screen 
+function currentTime() {
+    return Number(time.textContent);
+}
+
+//function to set the new time and dsiplay it on the screen 
+function setNewTime(newQuizTime) {
+    time.textContent = newQuizTime;
+}
