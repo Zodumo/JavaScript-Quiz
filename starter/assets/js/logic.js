@@ -22,3 +22,7 @@ var userInitals = document.querySelector("#initials");
 
 //logic for the final score
 var finalScore = document.querySelector("#final-score");
+
+//Elements for the questions
+var questionEL = document.query("question");
+var userOptionsEL = document.query("")
