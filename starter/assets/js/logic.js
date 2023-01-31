@@ -17,12 +17,17 @@ var startQuiz = document.querySelector("#start");
 //Button to submit answer 
 var submitAnswer = document.querySelector("#submit");
 
-//logic for  user's initials 
+//Element for  user's initials 
 var userInitals = document.querySelector("#initials");
 
-//logic for the final score
+//Element for the final score
 var finalScore = document.querySelector("#final-score");
 
-//Elements for the questions
-var questionEL = document.query("question");
-var userOptionsEL = document.query("")
+//Elements for the different screens in the quiz
+var StartScreen = document.querySelector("#start-screen");
+var QuestionScreen = document.querySelector("#questions");
+var EndScreen = document.querySelector("#end-screen");
+
+//Elemements for questions and usre's answers
+var questionsEL = document.query("#quizquestion");
+var userOptionsEL = document.query("#userOptions")
