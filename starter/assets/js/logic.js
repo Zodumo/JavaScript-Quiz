@@ -31,3 +31,8 @@ var EndScreen = document.querySelector("#end-screen");
 //Elemements for questions and usre's answers
 var questionsEL = document.query("#quizquestion");
 var userOptionsEL = document.query("#userOptions")
+
+
+//sfx files. Elements to using Audio() constructor to add sound to the game for correct and incorrect answer
+var correctSfx = new Audio("assets/sfx/correct.wav");
+var incorrectSfx = new Audio("assets/sfx/incorrect.wav");
