@@ -29,8 +29,8 @@ var QuestionScreen = document.querySelector("#questions");
 var EndScreen = document.querySelector("#end-screen");
 
 //Elemements for questions and usre's answers
-var questionsEL = document.query("#quizquestion");
-var userOptionsEL = document.query("#userOptions")
+var questionsEL = document.querySelector("#quizquestion");
+var userChoicesEL = document.querySelector("#userChoices")
 
 
 
@@ -80,3 +80,58 @@ function countdown() {
 function TimeMinusOne(){
     countdown(1);
 }
+//Start of Questions/Quiz logic
+
+function removeMessages() {
+    var messageElements = document.querySelectorAll(".message");
+
+    messageElements.forEach(function (element) {
+        element.remove();
+    });
+}
+//user should see a message when the answer is wrong
+function wrongAnswerMessageInterval() {
+    removeMessages();
+    // logic to display the message to user
+    var incorrectAnswerMessage = document.createElement("p");
+    incorrectAnswerMessage.textContent = "This answer in incorrect!";
+    incorrectAnswerMessage.classList.add("message", "wrong");
+    choicesElement.appendChild(incorrectAnswerMessage);
+
+    // ensuring the message disappears after 2 seconds. 
+    setTimeout(function () {
+        incorrectAnswerMessage.style.display = "none";
+    }, 2000);
+}
+
+
+
+
+function isTheAnswerCorrect() {
+    var optionButtons = document.querySelectorAll(".option-button");
+    // converts each option into a button
+    optionButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            var currentQuestion = userChoices[questionNumber];
+            // checks if answer selected is the correct answer
+            if (this.textContent === currentQuestion.correctAnswer) {
+                correctSfx.play();
+                score++;
+                // hides the current userChoices before moving onto the next question 
+                optionButtons.forEach(function (userChoices) {
+                    userChoices.style.display = "none";
+                });
+                showNextQuestion();
+            } else {
+                incorrectSfx.play();
+                wrongAnswerMessageInterval();
+                // take 10 secs off time.
+                decreaseTime(10);
+                score--;
+            }
+        })
+    })
+}
+
+//
+
