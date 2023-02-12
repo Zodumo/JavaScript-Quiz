@@ -89,7 +89,7 @@ function setNewTime(newQuizTime) {
 
 //Function to countdown the quiz and end it at 0
 function countdown() {
-    var displayedTime = currentTime(); 
+    var displayedTime = currentTime();
     var stoppageValue = displayedTime - value;
     // if the value of the timer is equal to or less than 0 , this indicates that the quiz is over
     if (stoppageValue <= 0) {
@@ -99,11 +99,11 @@ function countdown() {
     } else {
         // timer continues with new time if the condition of <=0 has not been met
         setNewTime(stoppageValue);
-    } 
+    }
 }
 
 //In the countdown, the timer should decrease by 1
-function TimeMinusOne(){
+function TimeMinusOne() {
     countdown(1);
 }
 //Start of Questions/Quiz logic
@@ -155,3 +155,85 @@ function isTheAnswerCorrect() {
     })
 }
 
+// function to display the next question. 
+function showNextQuestion() {
+    // end game once all questions have been answered 
+    if (questionNumber < choicesLength) {
+        // removes messages before next question is displayed
+        removeMessages();
+
+        //when called adds 1 to the index which in turn goes to the next question
+        questionNumber += 1;
+        // shuffles questions then displays a question title on the webpage
+        var questionName = shuffledQuestions[questionNumber].questionTitles;
+        questionsEL.textContent = questionName;
+        // displays corresponding options 
+        var choice = shuffledQuestions[questionNumber];
+        // creates choices buttons and displays the choices on the webpage 
+        console.log(questionNumber);
+
+        shuffle(choice.options).forEach(function (item) {
+            var optionButton = document.createElement("button");
+            optionButton.textContent = item;
+            optionButton.classList.add("option-button");
+            userChoicesEL.appendChild(optionButton);
+        });
+        // runs function to check if correct answer was selected
+        isTheAnswerCorrect();
+    } else {
+        gameOver();
+    }
+}
+
+
+function gameOver() {
+    QuestionsScreen.classList.add("hide");
+    EndScreen.classList.remove("hide");
+    finalScore.textContent = score;
+}
+
+
+start.addEventListener("click", function (event) {
+    event.preventDefault();
+    setNewTime(startTime);
+    // decrease time by 1 every second
+    interval = setInterval(TimeMinusOne, 1000);
+    // hide the start screen 
+    StartScreen.classList.add("hide");
+    // removes the class hide from the question screen to display the question screen
+    QuestionsScreen.classList.remove("hide");
+    showNextQuestion();
+})
+
+submit.addEventListener("click", function (event) {
+    // if no initials entered score is not saved
+    if (initialsInput.value === "") {
+        return;
+    }
+
+    var scoresString = localStorage.getItem("scores");
+    var scores;
+
+    // if no data in local storage a new string of scores is created
+    if (scoresString === null) {
+        scores = [];
+    } else {
+        // converts in local storage into an array with objects
+        scores = JSON.parse(scoresString);
+    }
+
+    var scoreObject = {
+        initials: initialsInput.value.toUpperCase(),
+        score: score
+    };
+
+    scores.push(scoreObject);
+    // converts score inot string to be stored in local storage
+    localStorage.setItem("scores", JSON.stringify(scores));
+    EndScreen.classList.add("hide");
+    StartScreen.classList.remove("hide");
+    // sets initial input box back to empty for next player
+    initialsInput.value = "";
+    // sets score back to 0 for next player
+    score = 0;
+});
