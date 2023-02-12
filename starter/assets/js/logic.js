@@ -25,12 +25,12 @@ var finalScore = document.querySelector("#final-score");
 
 //Elements for the different screens in the quiz
 var StartScreen = document.querySelector("#start-screen");
-var QuestionScreen = document.querySelector("#questions");
+var QuestionsScreen = document.querySelector("#questions");
 var EndScreen = document.querySelector("#end-screen");
 
-//Elemements for questions and usre's answers
+//Elemements for questions and user's answers
 var questionsEL = document.querySelector("#quizquestion");
-var userChoicesEL = document.querySelector("#userChoices")
+var userChoicesEL = document.querySelector("#userChoices");
 
 
 
@@ -50,6 +50,32 @@ var questionNumber = -1;
 //score for the player is set at 0. 
 var score = 0;
 
+//shuffling our questions
+function shuffle(array) {
+    var currentIndex = array.length;
+    var randomIndex;
+
+    // While there remains elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // swaps arrays index's to shuffle 
+        var temp = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temp;
+
+    }
+    return array;
+}
+
+// shuffles questions and stores in an array
+var shuffledQuestions = shuffle(choices);
+// -1 to match arrays index number
+var choicesLength = userchoices.length - 1;
+
 //function to get the current time on the screen 
 function currentTime() {
     return Number(time.textContent);
@@ -64,7 +90,7 @@ function setNewTime(newQuizTime) {
 //Function to countdown the quiz and end it at 0
 function countdown() {
     var displayedTime = currentTime(); 
-    var stoppageValue = displayedTime- value;
+    var stoppageValue = displayedTime - value;
     // if the value of the timer is equal to or less than 0 , this indicates that the quiz is over
     if (stoppageValue <= 0) {
         clearInterval(interval);
@@ -90,23 +116,19 @@ function removeMessages() {
     });
 }
 //user should see a message when the answer is wrong
-function wrongAnswerMessageInterval() {
+function IncorrectAnswerMessage() {
     removeMessages();
     // logic to display the message to user
     var incorrectAnswerMessage = document.createElement("p");
     incorrectAnswerMessage.textContent = "This answer in incorrect!";
     incorrectAnswerMessage.classList.add("message", "wrong");
-    choicesElement.appendChild(incorrectAnswerMessage);
+    userChoicesEL.appendChild(incorrectAnswerMessage);
 
     // ensuring the message disappears after 2 seconds. 
     setTimeout(function () {
         incorrectAnswerMessage.style.display = "none";
     }, 2000);
 }
-
-
-
-
 function isTheAnswerCorrect() {
     var optionButtons = document.querySelectorAll(".option-button");
     // converts each option into a button
@@ -124,14 +146,12 @@ function isTheAnswerCorrect() {
                 showNextQuestion();
             } else {
                 incorrectSfx.play();
-                wrongAnswerMessageInterval();
+                IncorrectAnswerMessage();
                 // take 10 secs off time.
-                decreaseTime(10);
+                TimeMinusOne(10);
                 score--;
             }
         })
     })
 }
-
-//
 
