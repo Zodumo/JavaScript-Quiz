@@ -1,88 +1,36 @@
-# Module 6 Challenge Web APIs: Code Quiz
+# JavaScript Coding Quiz
 
-## Your Task
+## Description
+ This is an application for a timed, multiple choice coding quiz based on general knowledge of the JavaScript language. 
 
-As you proceed in your journey to becoming a front-end web developer, it’s likely that you’ll be asked to complete a coding assessment, perhaps as part of an interview process. A typical coding assessment is a combination of multiple-choice questions and interactive coding challenges. 
+## Installation and Accessibility
+To install this application the user must simply clone the repo to their local machine. Once that is done, the user can open the code, then right-click on the index.html file to open on their default browswer. 
 
-To help you become familiar with these tests and give you a chance to apply the skills from this module, this week’s challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. This week’s coursework has taught you all the skills you need to succeed in this challenge.
- 
-
-## User Story
-
-```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
-
-## Acceptance Criteria
-
-Create a code quiz that contains the following requirements:
-
-* A start button that when clicked a timer starts and the first question appears.
- 
-  * Questions contain buttons for each answer.
-  * 
-  * When answer is clicked, the next question appears
-  * 
-  * If the answer clicked was incorrect then subtract time from the clock
-
-* The quiz should end when all questions are answered or the timer reaches 0.
-
-  * When the game ends, it should display their score and give the user the ability to save their initials and their score
-  
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![Animation of code quiz. Presses button to start quiz. Clicks the button for the answer to each question, displays if answer was correct or incorrect. Quiz finishes and displays high scores. User adds their intials, then clears their intials and starts over.](./assets/08-web-apis-challenge-demo.gif)
-
-## Grading Requirements
-
-This challenge is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the above acceptance criteria.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
+This application has also been deployed using GitHub pages. The quiz can be accessed via this link: https://zodumo.github.io/JavaScript-Quiz/
 
 
-## Review
+## Usage
 
-You are required to submit BOTH of the following for review:
+1. Click the "start" button so the quiz can begin.
+2. Go through the multiple choice questions which will be appear in no particular order and shuffled at each attempt. 
+3. The next question should appear if you gave the correct answer, otherwise, a wrong a answer generates the message "incorrect". 
+A correct and incorrect answer generates a corresponding sound respectivley. 
+Please also note that every incorrect answer takes away a second from the clock. 
+4. The game is officially over once all questions have been answered correctly or when the timer reaches 0. 
+5. You should then be met with a 'game over' page with your score and box to enter your initials. 
+To view where your score ranks amongst the highscores, click the view highscores' button on the top left of the page. 
+Once on that page, you will see your initials and your score ranking. 
+You then have the option of either going back to the beginning of the quiz or clearing highscores. 
 
-* The URL of the functional, deployed application.
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+## License
 
----
-© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+N/A
+
+
+## Credits 
+
+N/A
+
+
+

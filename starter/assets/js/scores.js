@@ -39,8 +39,8 @@ function getScores() {
         }
         // list scores
         var listElement = document.createElement("li");
-        listElement.textContent = scoreObject.initials + "the score is " + scoreObject.score;
-        highscoresElement.appendChild(listScores);
+        listElement.textContent = scoreObject.initials + "  achieved the score  " + scoreObject.score;
+        highscoresElement.appendChild(listElement);
     })
 }
 
