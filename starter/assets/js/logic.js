@@ -18,7 +18,7 @@ var startQuiz = document.querySelector("#start");
 var submitAnswer = document.querySelector("#submit");
 
 //Element for  user's initials 
-var userInitals = document.querySelector("#initials");
+var userInitials = document.querySelector("#initials");
 
 //Element for the final score
 var finalScore = document.querySelector("#final-score");
@@ -29,8 +29,8 @@ var QuestionsScreen = document.querySelector("#questions");
 var EndScreen = document.querySelector("#end-screen");
 
 //Elemements for questions and user's answers
-var questionsEL = document.querySelector("#quizquestion");
-var userChoicesEL = document.querySelector("#userChoices");
+var questionsEL = document.querySelector("#question-title");
+var userChoicesEL = document.querySelector("#choices");
 
 
 
@@ -63,18 +63,19 @@ function shuffle(array) {
         currentIndex--;
 
         // swaps arrays index's to shuffle 
-        var temp = array[currentIndex];
+        let temp = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temp;
-
+       
     }
     return array;
+   
 }
 
 // shuffles questions and stores in an array
 var shuffledQuestions = shuffle(choices);
 // -1 to match arrays index number
-var choicesLength = userchoices.length - 1;
+var choicesLength = choices.length - 1;
 
 //function to get the current time on the screen 
 function currentTime() {
@@ -88,7 +89,7 @@ function setNewTime(newQuizTime) {
 
 
 //Function to countdown the quiz and end it at 0
-function countdown() {
+function countdown(value) {
     var displayedTime = currentTime();
     var stoppageValue = displayedTime - value;
     // if the value of the timer is equal to or less than 0 , this indicates that the quiz is over
@@ -127,21 +128,21 @@ function IncorrectAnswerMessage() {
     // ensuring the message disappears after 2 seconds. 
     setTimeout(function () {
         incorrectAnswerMessage.style.display = "none";
-    }, 2000);
+    }, 2500);
 }
 function isTheAnswerCorrect() {
     var optionButtons = document.querySelectorAll(".option-button");
     // converts each option into a button
     optionButtons.forEach(function (button) {
         button.addEventListener("click", function () {
-            var currentQuestion = userChoices[questionNumber];
+            var currentQuestion = choices[questionNumber];
             // checks if answer selected is the correct answer
-            if (this.textContent === currentQuestion.correctAnswer) {
+            if (this.textContent === currentQuestion.Answer) {
                 correctSfx.play();
                 score++;
                 // hides the current userChoices before moving onto the next question 
-                optionButtons.forEach(function (userChoices) {
-                    userChoices.style.display = "none";
+                optionButtons.forEach(function (choices) {
+                    choices.style.display = "none";
                 });
                 showNextQuestion();
             } else {
@@ -165,14 +166,14 @@ function showNextQuestion() {
         //when called adds 1 to the index which in turn goes to the next question
         questionNumber += 1;
         // shuffles questions then displays a question title on the webpage
-        var questionName = shuffledQuestions[questionNumber].questionTitles;
+        var questionName = shuffledQuestions[questionNumber].quizQuestion;
         questionsEL.textContent = questionName;
         // displays corresponding options 
         var choice = shuffledQuestions[questionNumber];
         // creates choices buttons and displays the choices on the webpage 
         console.log(questionNumber);
 
-        shuffle(choice.options).forEach(function (item) {
+        shuffle(choice.userOptions).forEach(function (item) {
             var optionButton = document.createElement("button");
             optionButton.textContent = item;
             optionButton.classList.add("option-button");
@@ -207,7 +208,7 @@ start.addEventListener("click", function (event) {
 
 submit.addEventListener("click", function (event) {
     // if no initials entered score is not saved
-    if (initialsInput.value === "") {
+    if (userInitials.value === "") {
         return;
     }
 
@@ -223,7 +224,7 @@ submit.addEventListener("click", function (event) {
     }
 
     var scoreObject = {
-        initials: initialsInput.value.toUpperCase(),
+        initials: userInitials.value.toUpperCase(),
         score: score
     };
 
@@ -233,7 +234,7 @@ submit.addEventListener("click", function (event) {
     EndScreen.classList.add("hide");
     StartScreen.classList.remove("hide");
     // sets initial input box back to empty for next player
-    initialsInput.value = "";
+    userInitials.value = "";
     // sets score back to 0 for next player
     score = 0;
 });

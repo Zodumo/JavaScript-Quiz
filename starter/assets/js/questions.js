@@ -3,7 +3,7 @@
 
 //beginning of object of questions, multiple choice answers and the correct answer.
 
-var userChoices = [
+var choices = [
 
     {
         quizQuestion: "Are Java and JavaScript related?",
@@ -26,7 +26,7 @@ var userChoices = [
         quizQuestion: "what is a JavaScript function?",
         userOptions: ["a special variable, which can hold more than one value",
             "A block of code designed to perform a particular task",
-            "A blovk of code that repeats until a specified condition evaluates to false"],
+            "A block of code that repeats until a specified condition evaluates to false"],
         Answer: "A block of code designed to perform a particular task"
 
     },
